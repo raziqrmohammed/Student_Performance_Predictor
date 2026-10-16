@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2ff;
+            margin: 0;
+            padding: 30px 15px;
+        }
+        .container {
+            max-width: 450px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px #0001;
+        }
+        h1 { color: #3730a3; text-align: center; }
+        label { display: block; margin-top: 15px; }
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 11px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 22px;
+            background: #4338ca;
+            color: white;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 14px;
+            background: #eefbf0;
+            text-align: center;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Performance Predictor</h1>
+        <p>Enter student details to estimate final marks.</p>
+
+        <form method="POST">
+            <label>Study Hours per Day</label>
+            <input type="number" name="study_hours"
+                   min="0" max="24" step="0.1" required>
+
+            <label>Attendance (%)</label>
+            <input type="number" name="attendance"
+                   min="0" max="100" step="0.1" required>
+
+            <label>Previous Score (out of 100)</label>
+            <input type="number" name="previous_score"
+                   min="0" max="100" step="0.1" required>
+
+            <label>Assignment Score (out of 100)</label>
+            <input type="number" name="assignment_score"
+                   min="0" max="100" step="0.1" required>
+
+            <button type="submit">Predict Marks</button>
+        </form>
+
+        {% if prediction is not none %}
+        <div class="result">
+            <h2>Predicted Marks</h2>
+            <h1>{{ prediction }} / 100</h1>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
